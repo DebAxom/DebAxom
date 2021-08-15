@@ -1,7 +1,11 @@
-# Hi
-Hi I am Debarshi Pathak ( alias Deb Axom ) from Guwahati,Assam. <br>
-I am an amatuer software developer of age 15. <br>
-I am the founder and CEO of [Rentghor](https://rentghor.com)
+# Bio
+Founder and CEO of [Rentghor](https://rentghor.com) <br>
+Enterpreneur <br>
+Programmer <br>
+Assamese Nationalist <br><br>
+
+স্ৱাধীন অসম লাগিব | <br>
+জয় আই অসম । <br>
 
 # Contact info :
 Twitter : [@DebAxom](https://twitter.com/DebAxom) <br>
