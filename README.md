@@ -1,5 +1,5 @@
 # Bio
-Founder and CEO of [Rentghor](https://rentghor.com) <br>
+Founder & CEO of [Rentghor](https://rentghor.com) <br>
 Enterpreneur <br>
 Programmer <br>
 Assamese Nationalist <br><br>
