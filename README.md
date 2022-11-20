@@ -1,5 +1,4 @@
 # Bio
-Founder & CEO of [Rentghor](https://rentghor.com) <br>
 Enterpreneur <br>
 Programmer <br>
 # Contact info :
