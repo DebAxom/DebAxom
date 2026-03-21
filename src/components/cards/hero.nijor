@@ -1,18 +1,24 @@
-<body props="{title, html, no, img}">
-    <div class="card card-{no}">
-
-        <div class="card-bg">
-            <img src="{img}" alt="{title}">
-        </div>
+<body props="{title, html, no, bg, txt, text, icon}">
+    <div class="card card-{no}" style="background-image: {bg};">
 
         <div class="card-content">
-            <div class="card-top">
-                <h1>{title}</h1>
+
+            <!-- LEFT: TEXT -->
+            <div class="card-left">
+                <div class="card-title-mask">
+                    <h1 style="background-image: {txt};">{title}</h1>
+                </div>
+
+                <div class="card-bottom">
+                    <span style="color : {text};">{html}</span>
+                </div>
             </div>
 
-            <div class="card-bottom">
-                <span>{html}</span>
+            <!-- RIGHT: ICON -->
+            <div class="card-icon">
+                <img src="{icon}" alt="icon">
             </div>
+
         </div>
 
     </div>
@@ -25,67 +31,110 @@
         height: 65%;
         border-radius: 20px;
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-        transition: transform 0.35s ease, z-index 0.2s ease;
-    }
-
-    .card-bg {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-    }
-
-    .card-bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-    }
-
-    .card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75));
-        z-index: 1;
-    }
-
-    .card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at top left, rgba(0, 153, 255, 0.12), transparent 60%);
-        pointer-events: none;
-        z-index: 1;
+        border: 1px solid #1f1f1f;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 1), inset 0 1px 0 #2a2a2a;
+        transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, z-index 0.2s ease;
     }
 
     .card-content {
         position: relative;
-        z-index: 2;
-
         padding: 20px;
         height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
+    .card-left {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        height: 100%;
+        max-width: 70%;
+    }
 
-        color: white;
-
-        h1 {
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-        }
+    /* TEXT MASK */
+    .card-title-mask h1 {
+        font-size: 56px;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 1px;
+        color: transparent;
+        display: inline-block;
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     .card-bottom span {
         font-size: 13px;
-        opacity: 0.8;
         line-height: 1.5;
     }
 
+    /* ICON */
+    .card-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .card-icon img {
+        width: 160px;
+        height: 160px;
+        object-fit: contain;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Hover */
+    @media (min-width: 768px) {
+
+        .card {
+            transform-origin: center;
+        }
+
+        .card:hover {
+            z-index: 10;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 1), inset 0 1px 0 #333;
+        }
+
+        .card:hover .card-icon img {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+
+        .card-1 {
+            top: 22%;
+            left: 8%;
+            transform: scale(0.95);
+        }
+
+        .card-2 {
+            top: 14%;
+            left: 22%;
+            transform: scale(0.97);
+        }
+
+        .card-3 {
+            top: 6%;
+            left: 36%;
+            transform: scale(1);
+        }
+
+        .card-1:hover {
+            transform: translateY(-30px) scale(1.02) !important;
+        }
+
+        .card-2:hover {
+            transform: translateY(-40px) scale(1.04) !important;
+        }
+
+        .card-3:hover {
+            transform: translateY(-50px) scale(1.06) !important;
+        }
+    }
+
+    /* Mobile */
     @media (max-width: 768px) {
 
         .card {
@@ -93,59 +142,31 @@
             width: 100%;
             height: 180px;
             transform: none !important;
-            opacity: 1 !important;
+            box-shadow: none;
+            text-align: left;
         }
 
-        .card-1,.card-2,.card-3 {
+        .card-left {
+            max-width: 100%;
+        }
+
+        .card-icon {
+            align-self: flex-end;
+        }
+
+        .card-icon img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .card-1, .card-2, .card-3 {
             left: initial;
             top: initial;
         }
 
-        .card-content{
-            text-align: left;
-        }
-    }
-
-    @media (min-width: 768px) {
-
-        .card {
-            transform-origin: center;
-        }
-
-        .card-1 {
-            top: 22%;
-            left: 8%;
-        }
-
-        .card-2 {
-            top: 14%;
-            left: 22%;
-        }
-
-        .card-3 {
-            top: 6%;
-            left: 36%;
-        }
-
-        .card:hover {
-            z-index: 10;
-        }
-
-        .card-1:hover {
-            transform: translateY(-40px) scale(1.03) !important;
-        }
-
-        .card-2:hover {
-            transform: translateY(-40px) scale(1.03) !important;
-        }
-
-        .card-3:hover {
-            transform: translateY(-40px) scale(1.03) !important;
-        }
-
-        /* ✨ IMAGE ZOOM */
-        .card:hover .card-bg img {
-            transform: scale(1.05);
+        .card-title-mask h1 {
+            font-size: 40px;
+            background-image: linear-gradient(60deg, #008bf6, #007bff);
         }
     }
 </style>

@@ -6,6 +6,9 @@
     box-sizing: border-box;
     outline: none;
     font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 :root {
