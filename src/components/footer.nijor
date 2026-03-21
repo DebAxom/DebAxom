@@ -1,0 +1,63 @@
+<body>
+    <footer class="footer">
+
+        <div class="footer-content">
+            <h2>Deb Axom</h2>
+            <p>Building things on the internet.</p>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 — Crafted with intent.</p>
+        </div>
+
+    </footer>
+</body>
+
+<style>
+    .footer {
+        margin-top: auto;
+        width: 100%;
+        padding: 40px 20px 20px;
+
+        background: radial-gradient(circle at bottom, #111, #000);
+        color: white;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* MAIN TEXT */
+    .footer-content {
+        text-align: center;
+    }
+
+    .footer-content h2 {
+        font-size: 20px;
+        letter-spacing: 1px;
+    }
+
+    .footer-content p {
+        font-size: 13px;
+        opacity: 0.6;
+        margin-top: 5px;
+    }
+
+    /* BOTTOM */
+    .footer-bottom {
+        font-size: 12px;
+        opacity: 0.5;
+    }
+
+    /* subtle hover polish */
+    .footer-content h2 {
+        transition: transform 0.3s ease;
+    }
+
+    .footer:hover h2 {
+        transform: translateY(-2px);
+    }
+</style>

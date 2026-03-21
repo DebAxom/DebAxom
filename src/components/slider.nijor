@@ -1,0 +1,61 @@
+<import name="about" source="@/components/slides/about.nijor" />
+<import name="skills" source="@/components/slides/skills.nijor" />
+
+<body>
+    <div class="container" id="slider">
+        <about></about>
+        <skills></skills>
+    </div>
+</body>
+<style>
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            height: auto;
+            grid-area: 6px;
+        }
+    }
+</style>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+</script>
+
+<script defer>
+    setTimeout(() => {
+
+        const isMobile = window.innerWidth < 768;
+        const slides = gsap.utils.toArray('.slide');
+
+        if (!isMobile) {
+            gsap.to(slides, {
+                xPercent: -100 * (slides.length - 1),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#slider",
+                    pin: true,
+                    scrub: 1,
+                }
+            });
+        } else {
+            gsap.from(".slide", {
+                opacity: 0,
+                y: 40,
+                duration: 0.6,
+                stagger: 0.2
+            });
+        }
+
+    }, 20);
+</script>

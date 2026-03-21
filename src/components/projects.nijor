@@ -1,0 +1,72 @@
+<import name="project" source="@/components/cards/project.nijor" />
+
+<body>
+    <div class="container" id="projects">
+        <h1>Projects</h1>
+        <div id="projects-container">
+            <project title="Nijor" img="nijor.svg" url="https://nijor.dev" cta="Visit nijor.dev">
+                Nijor is a frontend web framework which I've been building since 2019 (when I was 14-15 years old). <br>
+                I built it because I didn't want to learn React but was intrigued by the concept of components.
+            </project>
+            <project title="Disang Keyboard" img="disang.png" url="https://github.com/DebAxom/Disang" cta="View Project">
+                An Android keyboard that converts Assamese writen in English alphabets to Assamese alphabets.
+            </project>
+            <project title="NITS Ryde" img="nits-ryde.png" url="https://nits-ryde.netlify.app/" cta="View Project">
+                A fun, student-only platform for NIT Silchar students where they can easily share rides to common locations and save money together !
+            </project>
+        </div>
+    </div>
+</body>
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        flex-grow: 1;
+        flex-shrink: 0;
+        padding: 0% 8%;
+        width: 100vw;
+        height: auto;
+    }
+
+    @media (max-width: 768px) {
+        h1{
+            margin-top: 50px;
+        }
+    }
+</style>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+</script>
+<script defer>
+    setTimeout(() => {
+
+        const cards = gsap.utils.toArray("#projects-container > div > *");
+
+        gsap.fromTo(cards,
+            {
+                opacity: 0,
+                y: 100,
+                scale: 0.9,
+                rotateX: 10
+            },
+            {
+                scrollTrigger: {
+                    trigger: "#projects-container",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                rotateX: 0,
+                duration: 0.9,
+                stagger: 0.2,
+                ease: "power4.out"
+            }
+        );
+
+    }, 100);
+</script>

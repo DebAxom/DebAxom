@@ -1,0 +1,168 @@
+<style>
+    .header {
+        width: 100%;
+        height: 70px;
+        padding: 5px 10px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        position: fixed;
+        top: -250px;
+        z-index: 999;
+
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+
+        transition: all 0.3s ease;
+    }
+
+    .logo {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+
+        h1 {
+            margin-top: 10px;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(60deg, #00A2E8, #0e73f8, #00A2E8);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: flow 2s linear infinite;
+        }
+    }
+
+    @keyframes flow {
+        0% {
+            background-position: 0% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
+    }
+
+    img {
+        margin: 0px 10px;
+        margin-top: 5px;
+        height: 50px;
+        width: 50px;
+        vertical-align: middle;
+    }
+
+    .nav-bar button {
+        border: none;
+        background: transparent;
+        padding: 6px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .nav-bar {
+        height: 100%;
+        padding: 5px;
+        display: flex;
+
+        a {
+            padding: 6px 10px;
+            margin: auto;
+            margin-right: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            transform: scale(1.1) translateY(-2px);
+            color: #0066f6;
+        }
+    }
+
+    .theme-dark-btn {
+        display: block;
+    }
+
+    .theme-light-btn {
+        display: none;
+    }
+
+    @media only screen and (max-width: 768px){
+        .logo h1{
+            display: none;
+        }
+    }
+</style>
+
+<style theme="dark">
+    .header {
+        background: rgba(20, 20, 20, 0.6);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-bar a:hover {
+        color: #0099f9;
+    }
+
+    .theme-dark-btn {
+        display: none;
+    }
+
+    .theme-light-btn {
+        display: block;
+    }
+</style>
+
+<body>
+    <div class="header" id="header">
+        <a on:click="scrollTop()" class="logo">
+            <img src="images/logo.svg" />
+            <h1>Deb Axom</h1>
+        </a>
+        <div class="nav-bar">
+            <a class="nav-link" onclick="window.scrollToId('projects')">Showcase</a>
+            <a class="nav-link" onclick="window.scrollToId('contact')">Contact</a>
+            <button class="theme-dark-btn" on:click="ChangeTheme()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" /></svg></button>
+            <button class="theme-light-btn" on:click="ChangeTheme()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" /></svg></button>
+        </div>
+    </div>
+</body>
+
+<script>
+    import { setTheme } from 'nijor/theme';
+
+    function ChangeTheme() {
+        document.body.style.transition = "0.5s";
+        let Theme = window.localStorage.getItem('theme');
+
+        if (Theme === "auto" || Theme === null) {
+            let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (isDarkMode) {
+                setTheme('light');
+                return;
+            }
+
+            setTheme('dark');
+            return;
+        }
+        if (Theme === "dark") setTheme("light");
+        if (Theme === "light") setTheme("dark");
+    }
+
+    function scrollTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>

@@ -1,0 +1,10 @@
+<body>
+    <div class="slide">
+        <h1 class="slide-h1">About Me</h1>
+        <p class="slide-p">
+            I am Deb Axom (Debarshi Pathak), an aspiring entrapranuer from Guwahati, Assam. <br>
+            I learned coding at the age of 14 to bring my startup idea to live ; the startup kinda failed but I fell in love with coding in the process of building it. <br>
+            I have been coding since then and currently pursuing Computer Science and Engineering at NIT Silchar.
+        </p>
+    </div>
+</body>

@@ -1,0 +1,1 @@
+bun /home/debaxom/Desktop/nijor/nijor/bin/cli.js $1

@@ -1,0 +1,194 @@
+<import name="card" source="@/components/cards/hero.nijor" />
+
+<body>
+    <div class="hero" id="hero-section">
+        <div class="main">
+
+            <div class="content">
+                <h1>Deb Axom</h1>
+                <p>I build things on the internet — self-taught developer & aspiring entrepreneur.</p>
+                <button onclick="window.scrollToId('contact')">Get in Touch</button>
+            </div>
+            <div class="cards">
+                <card title="Travel" no="1" img="/images/hero/bangkok.jpeg">Exploring places, ideas, and perspectives
+                </card>
+                <card title="Open to Freelance" no="2" img="/images/hero/freelance.jpeg">Let’s build something real
+                </card>
+                <card title="I build Software" no="3" img="/images/hero/software.png">Systems over shortcuts</card>
+            </div>
+        </div>
+    </div>
+</body>
+
+<style>
+    .hero {
+        min-height: 100dvh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 40%), radial-gradient(circle at top, #111, #000);
+        color: white;
+        padding: 20px;
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    .main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        gap: 20px;
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        h1 {
+            color: rgb(206, 206, 206);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            opacity: 0.8;
+            max-width: 500px;
+        }
+    }
+
+    button {
+        background: #0099ff;
+        color: black;
+        width: fit-content;
+        padding: 8px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        background-color: #2563eb;
+        box-shadow: 0 10px 30px rgba(0, 153, 255, 0.3);
+    }
+
+    @media (max-width: 768px) {
+        .main {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .content {
+            align-items: center;
+        }
+
+        .cards {
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column-reverse;
+            gap: 12px;
+            height: auto;
+        }
+    }
+
+    .cards {
+        flex: 1;
+        width: 100%;
+        height: 350px;
+        position: relative;
+        overflow: visible;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: clamp(56px, 9vw, 92px);
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: 1px;
+        display: inline-block;
+        background: linear-gradient(100deg, #8a8a8a 0%, #d6d6d6 25%, #ffffff 40%, #d6d6d6 55%, #8a8a8a 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: flow 3.5s ease-in-out infinite;
+    }
+
+    @keyframes flow {
+        0% {
+            background-position: 0% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
+    }
+</style>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    gsap.registerPlugin(ScrollTrigger);
+</script>
+
+<script defer>
+    setTimeout(() => {
+
+        const isMobile = window.innerWidth < 768;
+
+        if (!isMobile) {
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#hero-section",
+                    start: "top top",
+                    end: "+=140%",
+                    scrub: 1,
+                    pin: true,
+                    pinSpacing: true,
+                }
+            });
+
+            // PHASE 1: Cards move out
+            tl.to(".card-3", {
+                y: -120,
+                x: 80,
+                rotate: 10,
+                opacity: 0,
+                duration: 1
+            });
+
+            tl.to(".card-2", {
+                y: -140,
+                x: 100,
+                rotate: -10,
+                opacity: 0,
+                duration: 1
+            }, "-=0.5");
+
+            tl.to(".card-1", {
+                y: -160,
+                x: 120,
+                rotate: 6,
+                opacity: 0,
+                duration: 1
+            }, "-=0.5");
+
+            // PHASE 2: Hero scales
+            tl.to("#hero-section", {
+                scale: 0.85,
+                ease: "none",
+                duration: 1.2
+            });
+
+        }
+
+    }, 10);
+</script>

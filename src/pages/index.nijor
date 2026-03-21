@@ -1,0 +1,13 @@
+<import name="hero" source="@/components/hero.nijor"/>
+<import name="slider" source="@/components/slider.nijor"/>
+<import name="projects" source="@/components/projects.nijor"/>
+<import name="contact" source="@/components/contact.nijor"/>
+<head>
+    <title>Deb Axom</title>
+</head>
+<body>
+    <hero></hero>
+    <slider></slider>
+    <projects></projects>
+    <contact></contact>
+</body>
