@@ -12,7 +12,8 @@
                 An Android keyboard that converts Assamese writen in English alphabets to Assamese alphabets.
             </project>
             <project title="NITS Ryde" img="nits-ryde.png" url="https://nits-ryde.netlify.app/" cta="View Project">
-                A fun, student-only platform for NIT Silchar students where they can easily share rides to common locations and save money together !
+                A fun, student-only platform for NIT Silchar students where they can easily share rides to common
+                locations and save money together !
             </project>
         </div>
     </div>
@@ -30,7 +31,7 @@
     }
 
     @media (max-width: 768px) {
-        h1{
+        h1 {
             margin-top: 50px;
         }
     }
@@ -39,34 +40,36 @@
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
-</script>
-<script defer>
-    setTimeout(() => {
 
-        const cards = gsap.utils.toArray("#projects-container > div > *");
+    export function onMount() {
+        setTimeout(() => {
 
-        gsap.fromTo(cards,
-            {
-                opacity: 0,
-                y: 100,
-                scale: 0.9,
-                rotateX: 10
-            },
-            {
-                scrollTrigger: {
-                    trigger: "#projects-container",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
+            const cards = gsap.utils.toArray("#projects-container > div > *");
+
+            gsap.fromTo(cards,
+                {
+                    opacity: 0,
+                    y: 100,
+                    scale: 0.9,
+                    rotateX: 10
                 },
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                rotateX: 0,
-                duration: 0.9,
-                stagger: 0.2,
-                ease: "power4.out"
-            }
-        );
+                {
+                    scrollTrigger: {
+                        trigger: "#projects-container",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    rotateX: 0,
+                    duration: 0.9,
+                    stagger: 0.2,
+                    ease: "power4.out"
+                }
+            );
 
-    }, 100);
+        }, 100);
+
+    }
 </script>

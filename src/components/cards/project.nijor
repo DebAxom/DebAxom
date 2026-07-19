@@ -92,6 +92,10 @@
         object-fit: cover;
     }
 
+    a{
+        width: fit-content;
+    }
+
     @media (max-width: 768px) {
         .project {
             flex-direction: column-reverse;

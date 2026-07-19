@@ -30,32 +30,32 @@
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
-</script>
 
-<script defer>
-    setTimeout(() => {
+    export function onMount() {
+        setTimeout(() => {
 
-        const isMobile = window.innerWidth < 768;
-        const slides = gsap.utils.toArray('.slide');
+            const isMobile = window.innerWidth < 768;
+            const slides = gsap.utils.toArray('.slide');
 
-        if (!isMobile) {
-            gsap.to(slides, {
-                xPercent: -100 * (slides.length - 1),
-                ease: "none",
-                scrollTrigger: {
-                    trigger: "#slider",
-                    pin: true,
-                    scrub: 1,
-                }
-            });
-        } else {
-            gsap.from(".slide", {
-                opacity: 0,
-                y: 40,
-                duration: 0.6,
-                stagger: 0.2
-            });
-        }
+            if (!isMobile) {
+                gsap.to(slides, {
+                    xPercent: -100 * (slides.length - 1),
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: "#slider",
+                        pin: true,
+                        scrub: 1,
+                    }
+                });
+            } else {
+                gsap.from(".slide", {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    stagger: 0.2
+                });
+            }
 
-    }, 20);
+        }, 20);
+    }
 </script>

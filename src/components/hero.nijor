@@ -10,11 +10,14 @@
                 <button onclick="window.scrollToId('contact')">Get in Touch</button>
             </div>
             <div class="cards">
-                <card title="Travel" no="1" bg="linear-gradient(120deg, #f5f5f5, #e0e0e0)" txt="linear-gradient(135deg, #ff3f2d, #ffec1c)" text="black" icon="/images/hero/travel.png">Exploring places !
+                <card title="Travel" no="1" bg="linear-gradient(120deg, #f5f5f5, #e0e0e0)" txt="linear-gradient(135deg, #ff3f2d, #ffec1c)" text="black" icon="/images/hero/travel.png">
+                    Exploring places !
                 </card>
-                <card title="Freelance" no="2" bg="linear-gradient(135deg, #00c853, #00e676)" txt="linear-gradient(135deg, #ffffff, #d4ffe8)" text="white" icon="/images/hero/wallet.png">Let’s build something real !
+                <card title="Freelance" no="2" bg="linear-gradient(135deg, #00c853, #00e676)" txt="linear-gradient(135deg, #ffffff, #d4ffe8)" text="white" icon="/images/hero/wallet.png">Let’s
+                    build something real !
                 </card>
-                <card title="Software" no="3" bg="linear-gradient(90deg, #202020, #292929)" txt="linear-gradient(60deg, #008bf6, #007bff)" text="white" icon="/images/hero/software.png">Love building products !</card>
+                <card title="Software" no="3" bg="linear-gradient(90deg, #202020, #292929)" txt="linear-gradient(60deg, #008bf6, #007bff)" text="white" icon="/images/hero/software.png">Love
+                    building products !</card>
             </div>
         </div>
     </div>
@@ -136,59 +139,60 @@
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     gsap.registerPlugin(ScrollTrigger);
-</script>
 
-<script defer>
-    setTimeout(() => {
+    export function onMount() {
 
-        const isMobile = window.innerWidth < 768;
+        setTimeout(() => {
 
-        if (!isMobile) {
+            const isMobile = window.innerWidth < 768;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#hero-section",
-                    start: "top top",
-                    end: "+=140%",
-                    scrub: 1,
-                    pin: true,
-                    pinSpacing: true,
-                }
-            });
+            if (!isMobile) {
 
-            // PHASE 1: Cards move out
-            tl.to(".card-3", {
-                y: -120,
-                x: 80,
-                rotate: 10,
-                opacity: 0,
-                duration: 1
-            });
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#hero-section",
+                        start: "top top",
+                        end: "+=140%",
+                        scrub: 1,
+                        pin: true,
+                        pinSpacing: true,
+                    }
+                });
 
-            tl.to(".card-2", {
-                y: -140,
-                x: 100,
-                rotate: -10,
-                opacity: 0,
-                duration: 1
-            }, "-=0.5");
+                // PHASE 1: Cards move out
+                tl.to(".card-3", {
+                    y: -120,
+                    x: 80,
+                    rotate: 10,
+                    opacity: 0,
+                    duration: 1
+                });
 
-            tl.to(".card-1", {
-                y: -160,
-                x: 120,
-                rotate: 6,
-                opacity: 0,
-                duration: 1
-            }, "-=0.5");
+                tl.to(".card-2", {
+                    y: -140,
+                    x: 100,
+                    rotate: -10,
+                    opacity: 0,
+                    duration: 1
+                }, "-=0.5");
 
-            // PHASE 2: Hero scales
-            tl.to("#hero-section", {
-                scale: 0.85,
-                ease: "none",
-                duration: 1.2
-            });
+                tl.to(".card-1", {
+                    y: -160,
+                    x: 120,
+                    rotate: 6,
+                    opacity: 0,
+                    duration: 1
+                }, "-=0.5");
 
-        }
+                // PHASE 2: Hero scales
+                tl.to("#hero-section", {
+                    scale: 0.85,
+                    ease: "none",
+                    duration: 1.2
+                });
 
-    }, 10);
+            }
+        }, 10);
+        
+    }
 </script>

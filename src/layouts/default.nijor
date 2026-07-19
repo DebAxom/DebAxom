@@ -1,22 +1,25 @@
-<import name="header" source="@/components/header.nijor">
-<import name="footer" source="@/components/footer.nijor">
+<import name="header" source="@/components/header.nijor" />
+<import name="footer" source="@/components/footer.nijor" />
+
 <body>
     <header></header>
-        <div n:slot style="min-height: calc(100dvh - 70px);"></div>
+    <div n:slot style="min-height: calc(100dvh - 70px);"></div>
     <footer></footer>
 </body>
-<script defer>
-    const header = document.getElementById("header");
-    const isMobile = window.innerWidth < 768;
-    const desiredHeight = isMobile ? window.innerHeight * 0.8 : window.innerHeight * 1.6;
+<script>
+    export function onMount() {
+        const header = document.getElementById("header");
+        const isMobile = window.innerWidth < 768;
+        const desiredHeight = isMobile ? window.innerHeight * 0.8 : window.innerHeight * 1.6;
 
-    window.addEventListener("scroll", () => {
-        const scrollY = window.scrollY;
+        window.addEventListener("scroll", () => {
+            const scrollY = window.scrollY;
 
-        if (scrollY > desiredHeight) {
-            header.style.top = "0px";
-        } else {
-            header.style.top = "-250px";
-        }
-    });
+            if (scrollY > desiredHeight) {
+                header.style.top = "0px";
+            } else {
+                header.style.top = "-250px";
+            }
+        });
+    }
 </script>

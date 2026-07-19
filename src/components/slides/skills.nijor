@@ -32,34 +32,36 @@
     gsap.registerPlugin(ScrollTrigger);
 
     const skills = [
-        ['Nijor','nijor.svg'],
+        ['Nijor', 'nijor.svg'],
         ['React/Next', 'react.svg'],
-        ['MongoDB','mongodb.svg'],
-        ['Javascript','javascript.svg'],
-        ['Python','python.svg'],
-        ['Go','go.svg'],
-        ['Rust','rust.svg'],
-        ['Git','git.svg'],
-        ['Docker','docker.svg']
+        ['MongoDB', 'mongodb.svg'],
+        ['Javascript', 'javascript.svg'],
+        ['Python', 'python.svg'],
+        ['Go', 'go.svg'],
+        ['Rust', 'rust.svg'],
+        ['Git', 'git.svg'],
+        ['Docker', 'docker.svg']
     ];
-</script>
 
-<script defer>
-    setTimeout(() => {
-        gsap.to(gsap.utils.toArray('.skill'), {
-            scrollTrigger: {
-                trigger: '.skills-container',
-                start: "top 85%",
-                toggleActions: "play none none reverse"
-            },
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: {
-                each: 0.1
-            },
-            ease: "power2.out"
-        });
+    export function onMount() {
 
-    }, 30);
+        setTimeout(() => {
+            gsap.to(gsap.utils.toArray('.skill'), {
+                scrollTrigger: {
+                    trigger: '.skills-container',
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: {
+                    each: 0.1
+                },
+                ease: "power2.out"
+            });
+
+        }, 30);
+
+    }
 </script>
