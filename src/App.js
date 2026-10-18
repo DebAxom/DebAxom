@@ -9,7 +9,14 @@ autoTheme();
 
 window.scrollToId = id => {
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) {
+        window.nijor.redirect(`/#${id}`);
+        setTimeout(() => {
+            const target = document.getElementById(id);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 150);
+        return;
+    }
 
     el.scrollIntoView({
         behavior: "smooth",

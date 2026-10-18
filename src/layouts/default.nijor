@@ -12,7 +12,12 @@
         const isMobile = window.innerWidth < 768;
         const desiredHeight = isMobile ? window.innerHeight * 0.8 : window.innerHeight * 1.6;
 
-        window.addEventListener("scroll", () => {
+        const updateHeader = () => {
+            if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
+                header.style.top = "0px";
+                return;
+            }
+
             const scrollY = window.scrollY;
 
             if (scrollY > desiredHeight) {
@@ -20,6 +25,9 @@
             } else {
                 header.style.top = "-250px";
             }
-        });
+        };
+
+        updateHeader();
+        window.addEventListener("scroll", updateHeader);
     }
 </script>
