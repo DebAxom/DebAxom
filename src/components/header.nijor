@@ -2,12 +2,6 @@
     .header {
         width: 100%;
         height: 70px;
-        padding: 5px 10px;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
         position: fixed;
         top: -250px;
         z-index: 999;
@@ -19,17 +13,28 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 
-        transition: all 0.3s ease;
+        transition: top 0.3s ease;
+    }
+
+    .header-inner {
+        width: 100%;
+        height: 100%;
+        padding: 5px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
     }
 
     .logo {
-        padding: 10px;
         display: flex;
         flex-direction: row;
+        align-items: center;
+        cursor: pointer;
 
         h1 {
-            margin-top: 10px;
-            font-size: 28px;
+            margin-top: 2px;
+            font-size: 26px;
             font-weight: 600;
             letter-spacing: 1px;
             position: relative;
@@ -52,32 +57,27 @@
         }
     }
 
-    img {
-        margin: 0px 10px;
-        margin-top: 5px;
-        height: 50px;
-        width: 50px;
+    .logo img {
+        margin-right: 10px;
+        height: 44px;
+        width: 44px;
         vertical-align: middle;
     }
 
-    .nav-bar button {
-        border: none;
-        background: transparent;
-        padding: 6px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.2s ease;
+    .header-right {
+        display: flex;
+        align-items: center;
+        gap: 6px;
     }
 
     .nav-bar {
         height: 100%;
-        padding: 5px;
         display: flex;
+        align-items: center;
 
         a {
-            padding: 6px 10px;
-            margin: auto;
-            margin-right: 10px;
+            padding: 6px 12px;
+            margin-right: 6px;
             font-size: 15px;
             cursor: pointer;
             border-radius: 8px;
@@ -85,22 +85,162 @@
         }
 
         a:hover {
-            transform: scale(1.1) translateY(-2px);
+            transform: scale(1.08) translateY(-2px);
             color: #0066f6;
         }
     }
 
+    .theme-dark-btn,
+    .theme-light-btn {
+        border: none;
+        background: transparent;
+        padding: 6px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .theme-dark-btn:hover,
+    .theme-light-btn:hover {
+        background: rgba(0, 0, 0, 0.06);
+    }
+
     .theme-dark-btn {
-        display: block;
+        display: flex;
     }
 
     .theme-light-btn {
         display: none;
     }
 
-    @media only screen and (max-width: 768px){
-        .logo h1{
+    .hamburger-btn {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        width: 38px;
+        height: 38px;
+        padding: 6px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.2s ease;
+    }
+
+    .hamburger-btn:hover {
+        background: rgba(0, 0, 0, 0.06);
+    }
+
+    .hamburger-btn .bar {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background-color: #111;
+        border-radius: 2px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger-btn.open .bar1 {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.open .bar2 {
+        opacity: 0;
+    }
+
+    .hamburger-btn.open .bar3 {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+
+    @media only screen and (max-width: 768px) {
+        .header {
+            height: 60px;
+        }
+
+        .header-inner {
+            padding: 0 16px;
+        }
+
+        .logo img {
+            height: 34px;
+            width: 34px;
+            margin-right: 8px;
+        }
+
+        .logo h1 {
+            font-size: 19px;
+            margin-top: 0;
+        }
+
+        .nav-bar {
             display: none;
+        }
+
+        .hamburger-btn {
+            display: flex;
+        }
+
+        .mobile-menu {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.1);
+            padding: 12px 16px 18px;
+            gap: 6px;
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-nav-link {
+            padding: 12px 14px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #111;
+            transition: all 0.2s ease;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link:active {
+            background: rgba(0, 153, 255, 0.1);
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+    }
+
+    @media only screen and (max-width: 380px) {
+        .header-inner {
+            padding: 0 10px;
+        }
+
+        .logo h1 {
+            font-size: 17px;
         }
     }
 </style>
@@ -116,27 +256,76 @@
         color: #0099f9;
     }
 
+    .theme-dark-btn:hover,
+    .theme-light-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
     .theme-dark-btn {
         display: none;
     }
 
     .theme-light-btn {
-        display: block;
+        display: flex;
+    }
+
+    .hamburger-btn .bar {
+        background-color: #f3f4f6;
+    }
+
+    .hamburger-btn:hover {
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    @media only screen and (max-width: 768px) {
+        .mobile-menu {
+            background: rgba(20, 20, 20, 0.96);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 16px 28px rgba(0, 0, 0, 0.6);
+        }
+
+        .mobile-nav-link {
+            color: #f3f4f6;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link:active {
+            background: rgba(0, 153, 255, 0.15);
+            color: #0099ff;
+        }
     }
 </style>
 
 <body>
     <div class="header" id="header">
-        <a on:click="scrollTop()" class="logo">
-            <img src="images/logo.svg" />
-            <h1>Deb Axom</h1>
-        </a>
-        <div class="nav-bar">
-            <a class="nav-link" onclick="window.scrollToId('projects')">Showcase</a>
-            <a class="nav-link" onclick="window.scrollToId('contact')">Contact</a>
-            <a class="nav-link" n:route="/books">Books</a>
-            <button class="theme-dark-btn" on:click="ChangeTheme()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" /></svg></button>
-            <button class="theme-light-btn" on:click="ChangeTheme()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" /></svg></button>
+        <div class="header-inner">
+            <a on:click="scrollTop()" class="logo">
+                <img src="/images/logo.svg" alt="Logo" />
+                <h1>Deb Axom</h1>
+            </a>
+            <div class="header-right">
+                <div class="nav-bar">
+                    <a class="nav-link" onclick="window.scrollToId('projects')">Showcase</a>
+                    <a class="nav-link" onclick="window.scrollToId('contact')">Contact</a>
+                    <a class="nav-link" n:route="/books">Books</a>
+                </div>
+                <button class="theme-dark-btn" on:click="ChangeTheme()" aria-label="Switch to dark theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z" /></svg>
+                </button>
+                <button class="theme-light-btn" on:click="ChangeTheme()" aria-label="Switch to light theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-360q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35Zm0 80q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Zm326-268Z" /></svg>
+                </button>
+                <button class="hamburger-btn" id="hamburger-btn" on:click="toggleMenu()" aria-label="Toggle navigation menu">
+                    <span class="bar bar1"></span>
+                    <span class="bar bar2"></span>
+                    <span class="bar bar3"></span>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-menu" id="mobile-menu">
+            <a class="mobile-nav-link" onclick="window.scrollToId('projects')">Showcase</a>
+            <a class="mobile-nav-link" onclick="window.scrollToId('contact')">Contact</a>
+            <a class="mobile-nav-link" n:route="/books">Books</a>
         </div>
     </div>
 </body>
@@ -164,10 +353,47 @@
     }
 
     export function scrollTop() {
+        closeMenu();
         if (window.location.pathname !== "/" && window.location.pathname !== "/index.html") {
             window.nijor.redirect("/");
             return;
         }
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    export function toggleMenu() {
+        const nav = document.getElementById("mobile-menu");
+        const burger = document.getElementById("hamburger-btn");
+        if (nav && burger) {
+            nav.classList.toggle("open");
+            burger.classList.toggle("open");
+        }
+    }
+
+    export function closeMenu() {
+        const nav = document.getElementById("mobile-menu");
+        const burger = document.getElementById("hamburger-btn");
+        if (nav) nav.classList.remove("open");
+        if (burger) burger.classList.remove("open");
+    }
+
+    export function onMount() {
+        const mobileLinks = document.querySelectorAll(".mobile-menu a");
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                closeMenu();
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            closeMenu();
+        }, { passive: true });
+
+        document.addEventListener("click", (e) => {
+            const header = document.getElementById("header");
+            if (header && !header.contains(e.target)) {
+                closeMenu();
+            }
+        });
     }
 </script>
